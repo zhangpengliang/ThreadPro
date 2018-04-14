@@ -1,0 +1,5 @@
+pipeStream
+一种特殊的流。用于在不同线程之间传送数据
+
+1、PipeInputStream,PipeOutputStream
+2、PipeReader,PipeWriter
