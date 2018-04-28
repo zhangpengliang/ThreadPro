@@ -1,0 +1,34 @@
+阻塞队列（BlockingQueue）是一个支持两个附加操作的队列。
+这两个附加的操作是：在队列为空时，获取元素的线程会等待队列变为非空。当队列满时，存储元素的线程会等待队列可用
+
+阻塞队列常用于生产者和消费者的场景，生产者是往队列里添加元素的线程，消费者是从队列里拿元素的线程。
+阻塞队列就是生产者存放元素的容器，而消费者也只从容器里拿元素
+
+jdk提供了7个阻塞队列
+ArrayBlockingQueue 数组结构组成的有界阻塞队列
+
+LinkedBlockingQueue 链表结构组成的有界阻塞队列
+
+PriorityBlockingQueue 一个支持优先级排序的无界阻塞队列
+
+DelayQueue 一个使用优先级队列实现无界阻塞队列
+
+SynchronousQueue 一个不存储元素的阻塞队列
+
+LinkedTransferQueue 一个由链表结构组成的无界阻塞队列
+
+LinekdBlockingDeque 一个由链表结构组成的双向阻塞队列
+
+1、ArrayBlockingQueue与LinkedBlockingQueue的区别
+ （1）、ArrayBlockingQueue 内部实现是数组结构实现的，
+ 	  LinkedBlockingQueue 内部是设置capacity ----的int 类型变量,来限制链表大小的
+  （2）、ArrayBlockingQueue的实现原理,是通过ReentrantLock独占锁来实现,lock.newCondition.通过等待/通知原理来实现,当队列满的时候,通知消费者取数据，生产者
+              等待队列存在空间,当队列有空间的时候，通知生产者放数据,队列为空的时候消费者等待
+      LinkedBlockingQueue 也是生产者/消费者模式。区别在于 内部是构建Node节点，而且用的是两个锁（ReentrantLock）.一个是put锁一个是take锁
+      
+我一直觉得这里的阻塞是指的，放到这个队列容器中的过程或者从队列中取是否是阻塞的。是否需要等待或者存在锁
+
+而ConcurrentLinkedQueue 是一个基于'链接节点的无界线程安全队列'。内部是通过Node节点链接，CAS算法实现
+      
+ 
+      
