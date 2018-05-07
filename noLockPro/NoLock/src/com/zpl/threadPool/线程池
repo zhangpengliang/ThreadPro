@@ -1,0 +1,17 @@
+1、线程池的实现方式有几种
+2、线程池的拒绝策略
+3、execute与submit的区别
+4、如何使用固定线程池与调度线程池
+5、ForkJionPool---->这个线程池
+6、Future模式
+
+解答3：对于一个任务的执行有时我们不需要它返回结果，但是有我们需要它的返回执行结果。
+	   对于线程来讲，如果不需要它返回结果则实现Runnable，而如果需要执行结果的话则可以实现Callable。
+	   在线程池同样execute提供一个不需要返回结果的任务执行，而对于需要结果返回的则可调用其submit方法
+	   
+	 尽管submit方法能提供线程执行的返回值，但只有实现了Callable才会有返回值，
+	 而实现Runnable的线程则是没有返回值的，也就是说在上面的3个方法中，
+	 submit(Callable<T> task)能获取到它的返回值，
+	 submit(Runnable task, T result)
+	 能通过传入的载体result间接获得线程的返回值或者准确来说交给线程处理一下，
+	 而最后一个方法submit(Runnable task)则是没有返回值的，就算获取它的返回值也是null
